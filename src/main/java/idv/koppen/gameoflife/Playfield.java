@@ -5,14 +5,6 @@ import java.util.Random;
 
 public class Playfield {
 
-    public int getColumns() {
-        return columns;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
     private final int columns;
     private final int rows;
 

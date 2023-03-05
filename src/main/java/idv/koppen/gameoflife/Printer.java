@@ -1,7 +1,5 @@
 package idv.koppen.gameoflife;
 
-import java.io.PrintStream;
-
 public class Printer {
     public static void printGrid(Playfield playfield, int generation) {
         //Prints out the grid in the output log.
