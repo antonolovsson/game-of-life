@@ -11,33 +11,33 @@ public class Runner {
         int rows;
         int columns;
         int generations;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
 
         System.out.println("input rows (minimum value = 1): ");
-        rows = inputReader();
+        rows = inputReader(reader);
         System.out.println("input columns (minimum value = 1): ");
-        columns = inputReader();
+        columns = inputReader(reader);
         System.out.println("input generations (minimum value = 1): ");
-        generations = inputReader();
+        generations = inputReader(reader);
 
         Playfield playfield = new Playfield(rows, columns);
-        Calculator calculator = new Calculator();
-        playfield = calculator.generateStartingPosition(playfield);
-        Printer.printGrid(playfield);
-        for (int i = 0; i < generations; i++) {
+        playfield.generateStartingPosition();
+        System.out.println("Stating position.");
+        playfield.print();
+        for (int currentGeneration = 0; currentGeneration < generations; currentGeneration++) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            playfield = calculator.calculateNextGrid(playfield);
-            Printer.printGrid(playfield);
+            playfield.calculateNextGrid();
+            System.out.println("Generation: " + (currentGeneration + 1));
+            playfield.print();
         }
     }
 
-    private int inputReader() throws IOException {
-        // Enter data using BufferReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
+    private int inputReader(BufferedReader reader) throws IOException {
         // Reading data using readLine
         //TODO handle characters that's not an INT
         String input = reader.readLine();
