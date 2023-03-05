@@ -5,21 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Runner {
-
+    private final BufferedReader reader;
+    public Runner(){
+        reader = new BufferedReader(new InputStreamReader(System.in));
+    }
 
     public void run() throws IOException {
-        int rows;
-        int columns;
-        int generations;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-
         System.out.println("input rows (minimum value = 1): ");
-        rows = inputReader(reader);
+        int rows = inputReader(reader);
         System.out.println("input columns (minimum value = 1): ");
-        columns = inputReader(reader);
+        int columns = inputReader(reader);
         System.out.println("input generations (minimum value = 1): ");
-        generations = inputReader(reader);
+        int generations = inputReader(reader);
 
         Playfield playfield = new Playfield(rows, columns);
         playfield.generateStartingPosition();
@@ -39,7 +36,7 @@ public class Runner {
 
     private int inputReader(BufferedReader reader) throws IOException {
         // Reading data using readLine
-        //TODO handle characters that's not an INT
+        //TODO handle characters that's not an int and negative values.
         String input = reader.readLine();
         // Returns values greater than 0
         return Math.max(Integer.parseInt(input), 1);
